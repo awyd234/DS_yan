@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1398440954 source:e:\interests\data structure _ yan\chapter 2\textbook\sqlist\main.cpp
+	<stdio.h>
+	<stdlib.h>
+	"sqlist.h"
+
+1398439916 e:\interests\data structure _ yan\chapter 2\textbook\sqlist\sqlist.h
+
+1398440069 source:e:\interests\data structure _ yan\chapter 2\textbook\sqlist\sqlist.cpp
+	<stdio.h>
+	<stdlib.h>
+	"sqlist.h"
+
