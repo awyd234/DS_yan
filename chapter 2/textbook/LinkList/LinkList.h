@@ -22,5 +22,6 @@ typedef struct LNode{
 void CreateList_L(LinkList &L, int n);
 Status GetElem_L(LinkList L, int i, ElemType &e);
 Status ListInsert_L(LinkList &L, int i, ElemType e);
+Status ListDelete_L(LinkList &L, int i, ElemType e);
 
 #endif // LINKLIST_H_INCLUDED
