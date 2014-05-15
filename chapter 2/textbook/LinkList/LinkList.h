@@ -19,10 +19,19 @@ typedef struct LNode{
     struct LNode *next;
 }LNode, *LinkList;
 
+void InitList_L(LinkList &L);
+void Destroy_L(LinkList &L);
+void ClearList_L(LinkList &L);
 void CreateList_L(LinkList &L, int n);
+Status ListEmpty(LinkList L);
+int ListLength_L(LinkList L);
 Status GetElem_L(LinkList L, int i, ElemType &e);
+int LocateElme_L(LinkList L, ElemType e, Status (*compare)(ElemType, ElemType));
+Status PriorElem_L(LinkList L, ElemType cur_e,ElemType &pre_e);
 Status ListInsert_L(LinkList &L, int i, ElemType e);
 Status ListDelete_L(LinkList &L, int i, ElemType &e);
 void MergeList_L(LinkList &La, LinkList &Lb, LinkList &Lc);
-void Print_L(LinkList &L);
+void ListTraverse_L(LinkList &L, Status(*visit)(ElemType));
+Status Display_L(ElemType e);
+
 #endif // LINKLIST_H_INCLUDED
