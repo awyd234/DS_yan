@@ -56,7 +56,7 @@ Status GetElem_L(LinkList L, int i, ElemType &e){
     //当第i个元素存在时，其值赋给e并返回OK，否则返回ERROR
     LNode *p = L->next;
     int j =1;
-    while(p && j<1){
+    while(p && j<i){
         p = p->next;
         ++j;
     }
@@ -72,11 +72,38 @@ int LocateElme_L(LinkList L, ElemType e, Status (*compare)(ElemType, ElemType)){
     int i=0;
     while(p){
         i++;
-        if(p->data==e) return i;
+        if(compare(p->data,e)) return i;
         p = p->next;
     }
     return 0;
 }// LocateElme_L
+
+Status Equal_L(ElemType e1, ElemType e2){
+    //判断两个数据元素是否相等，相等返回OK，否则返回ERROR
+    if(e1 == e2) return OK;
+    return ERROR;
+}// Equal_L
+
+Status PriorElem_L(LinkList L, ElemType cur_e, ElemType &pre_e){
+    //查找第一个值为cur_e的前驱，若不存在则返回ERROR，否则由pre_e返回前驱值
+    int i = LocateElme_L(L,cur_e,Equal_L);
+    if(!i || i==1) return ERROR;
+    GetElem_L(L,i-1,pre_e);
+    return OK;
+}// PriorElem_L
+
+Status NextElem_L(LinkList L, ElemType cur_e, ElemType &next_e){
+    //查找第一个值为cur_e的后继，若不存在则返回ERROR，否则由next_e返回后继值
+    LNode *p = L->next;
+    while(p){
+        if(cur_e == p->data && p->next){
+            next_e = p->next->data;
+            return OK;
+        }
+        p = p->next;
+    }
+    return ERROR;
+}// NextElem_L
 
 Status ListInsert_L(LinkList &L, int i, ElemType e){
     //在带头结点的单链线性表L中第i个位置之前插入元素e
