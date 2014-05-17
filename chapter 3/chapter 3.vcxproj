@@ -64,10 +64,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Algorithm.h" />
     <ClInclude Include="sq_stack.h" />
     <ClInclude Include="type_def.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Algorithm.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="sq_stack.cpp" />
   </ItemGroup>

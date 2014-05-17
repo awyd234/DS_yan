@@ -24,7 +24,6 @@ Status DestroyStack(SqStack &S){
 Status ClearStack(SqStack &S){
 	// °ÑSÖÃÎª¿ÕÕ»
 	S.base = S.top;
-	S.stacksize = 0;
 	return OK;
 }// ClearStack
 
@@ -82,7 +81,7 @@ Status StackTraverse(SqStack S, Status(*visit)(SElemType)){
 
 Status Visit_Display_Char(SElemType e){
 	// ´òÓ¡×Ö·ûe
-	printf("%c ", e);
+	printf("%c", e);
 	return OK;
 }// Visit_Display_Char
 
