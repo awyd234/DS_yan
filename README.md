@@ -1,14 +1,10 @@
 DS_yan
 ======
 
-<<<<<<< HEAD
-《数据结构（C语言版）》严蔚敏4th版code
+�����ݽṹ��C���԰棩����ε��4th��code
 
-前2章是CodeBlocks的工程, 每种数据结构及习题都分别存于一个文件夹中
-后面的是VS2013的工程，所有代码与习题在同一个文件夹中
-部分代码有参考 徐哲钊 https://github.com/xuzhezhaozhao/DS_Code
-时间紧张，有些地方不够严谨，欢迎提出批评意见, 联系方式：317928691@qq.com
-作者：胡骞
-=======
-《数据结构（C语言版）》严蔚敏4th版code 由于写的时间比较紧迫，不严谨处请见谅
->>>>>>> 3040addf6094197a1fc8a9c398e55729ac00923d
+ǰ2����CodeBlocks�Ĺ���, ÿ�����ݽṹ��ϰ�ⶼ�ֱ����һ���ļ�����
+�������VS2013�Ĺ��̣����д�����ϰ����ͬһ���ļ�����
+���ִ����вο� ������ https://github.com/xuzhezhaozhao/DS_Code
+ʱ����ţ���Щ�ط������Ͻ�����ӭ����������, ��ϵ��ʽ��317928691@qq.com
+���ߣ����
