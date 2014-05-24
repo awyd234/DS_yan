@@ -10,7 +10,7 @@
 #define STACK_INIT_SIZE 100		//存储空间初始分配量
 #define STACKINCREMENT 10		//存储空间分配增量
 
-typedef char SElemType;		//针对不同的要求选择不同类型 char 或 int
+typedef int SElemType;		//针对不同的要求选择不同类型 char 或 int
 typedef int QElemType;
 typedef int Status;
 

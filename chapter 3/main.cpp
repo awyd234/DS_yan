@@ -5,7 +5,7 @@
 #include "sq_stack.h"
 
 int main(){
-	LineEdit();
+	hanoi(3, 'a', 'b', 'c');
 	system("pause");
 	return OK;
 }

@@ -15,7 +15,7 @@ Status DestroyStack(SqStack &S);
 Status ClearStack(SqStack &S);
 Status StackEmpty(SqStack S);
 int StackLength(SqStack S);
-Status GetTop(SqStack S, SElemType &e);
+SElemType GetTop(SqStack S);
 Status Push(SqStack &S, SElemType e);
 Status Pop(SqStack &S, SElemType &e);
 Status Visit_Display_Char(SElemType e);
