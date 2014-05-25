@@ -98,4 +98,4 @@ Status Visit_Display_Int_LQ(QElemType e){
 	// 打印整型变量e
 	printf("%d ", e);
 	return OK;
-}// Visit_Display_Int
+}// Visit_Display_Int_LQ

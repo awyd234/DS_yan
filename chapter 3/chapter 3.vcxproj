@@ -66,6 +66,7 @@
   <ItemGroup>
     <ClInclude Include="Algorithm.h" />
     <ClInclude Include="LinkQueue.h" />
+    <ClInclude Include="SqQueue.h" />
     <ClInclude Include="sq_stack.h" />
     <ClInclude Include="type_def.h" />
   </ItemGroup>
@@ -73,6 +74,7 @@
     <ClCompile Include="Algorithm.cpp" />
     <ClCompile Include="LinkQueue.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SqQueue.cpp" />
     <ClCompile Include="sq_stack.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

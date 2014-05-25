@@ -1,18 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "LinkQueue.h"
+#include "SqQueue.h"
 
 int main(){
-	LinkQueue Q;
+	SqQueue Q;
 	InitQueue(Q);
+	EnQueue(Q, 1);
 	EnQueue(Q, 2);
 	EnQueue(Q, 3);
-	EnQueue(Q, 4);
-	ClearQueue(Q);
-	EnQueue(Q, 4);
-	QueueTraverse(Q, Visit_Display_Int_LQ);
+	QueueTraverse(Q, Visit_Display_Int_SQ);
+	QElemType e;
+	DeQueue(Q,e);
+	QueueTraverse(Q,Visit_Display_Int_SQ);
 	DestroyQueue(Q);
 	system("pause");
-	return OK;
+	return 0;
 }
