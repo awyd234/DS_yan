@@ -1,11 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "Algorithm.h"
-#include "sq_stack.h"
+#include "LinkQueue.h"
 
 int main(){
-	hanoi(3, 'a', 'b', 'c');
+	LinkQueue Q;
+	InitQueue(Q);
+	EnQueue(Q, 2);
+	EnQueue(Q, 3);
+	EnQueue(Q, 4);
+	ClearQueue(Q);
+	EnQueue(Q, 4);
+	QueueTraverse(Q, Visit_Display_Int_LQ);
+	DestroyQueue(Q);
 	system("pause");
 	return OK;
 }
