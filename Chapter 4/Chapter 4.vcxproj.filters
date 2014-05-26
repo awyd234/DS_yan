@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="type_def.h">
+    <ClInclude Include="HString.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="HString.h">
+    <ClInclude Include="type_def.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
