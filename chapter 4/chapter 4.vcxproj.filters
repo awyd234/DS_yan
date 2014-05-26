@@ -21,12 +21,18 @@
     <ClInclude Include="type_def.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="algorithm.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HSring.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="algorithm.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

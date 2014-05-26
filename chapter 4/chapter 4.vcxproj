@@ -64,10 +64,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="algorithm.h" />
     <ClInclude Include="HString.h" />
     <ClInclude Include="type_def.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="algorithm.cpp" />
     <ClCompile Include="HSring.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
