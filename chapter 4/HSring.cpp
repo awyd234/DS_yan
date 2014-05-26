@@ -35,6 +35,17 @@ Status StrCopy(HString &T, HString S){
 	return OK;
 }// StrCopy
 
+Status StrEmpty(HString S){
+	// 若S为空串，则返回TRUE，否则返回FALSE
+	if (!S.ch)
+		return ERROR;
+	if (S.length == 0){
+		return TRUE;
+	} else{
+		return FALSE;
+	}
+}// StrEmpty
+
 int StrLength(HString S){
 	// 返回S的元素个数，称为串的长度
 	return S.length;
@@ -90,3 +101,86 @@ Status SubString(HString &Sub, HString S, int pos, int len){
 	}
 	return OK;
 }// SubString
+
+int Index(HString S, HString T, int pos){
+	// 串S与T存在，T为非空串，1 <= pos <= StrLength(S)
+	// 若主串S中存在和串T值相同的值，则返回它在主串S中第pos个字符之后第一次出现的
+	// 位置，否则返回0
+	int n, m, i;
+	HString sub;
+	if (pos < 1 || pos > StrLength(S)) return ERROR;
+	if (pos > 0){
+		n = StrLength(S);
+		m = StrLength(T);
+		i = pos;
+		while (i <= n - m + 1){
+			SubString(sub, S, i, m);
+			if (StrCompare(sub, T) != 0){
+				++i;
+			} else{
+				return i;
+			}
+		}// while
+	}// if
+	return 0;
+}// Index
+
+Status Replace(HString &S, HString T, HString V){
+	// 串S，T和V存在，T非空
+	// 用V替代主串S中存现的所有与T相等的不重叠的子串
+	int n, i=1;
+	HString Sub;
+	Sub.ch = NULL;
+	if (!S.ch || !V.ch || !T.ch || !T.length)
+		return ERROR;
+	n = T.length;
+	while (i <= S.length){
+		if (!(SubString(Sub, S, i, n))){
+			break;
+		}
+		if (StrCompare(T, Sub)){
+			i++;
+			continue;
+		}
+		StrDelete(S, i, n);
+		StrInsert(S, i, V);
+		i += StrLength(V) - n;
+	}
+	return OK;
+}// Replace
+
+Status StrInsert(HString &S, int pos, HString T){
+	// 串S与T存在，1 <= pos <= StrLength(S)+1
+	// 在串S的第pos个字符前插入串T
+	if (pos < 1 || pos >StrLength(S) + 1)
+		return ERROR;
+	HString SubFront, SubRear, Temp;
+	SubFront.ch = SubRear.ch = Temp.ch = NULL;
+	SubString(SubFront, S, 1, pos - 1);
+	SubString(SubRear, S, pos, StrLength(S) - pos + 1);
+	Concat(Temp, SubFront, T);
+	Concat(S, Temp, SubRear);
+	return OK;
+}// StrInsert
+
+Status StrDelete(HString &S, int pos, int len){
+	// 串S存在，1 <= pos <= StrLength(S)-len+1
+	// 从串S中删除第pos个字符起长度为len的子串
+	if (pos < 1 || pos > StrLength(S) - len + 1)
+		return ERROR;
+	HString Sub, T;
+	Sub.ch = T.ch = NULL;
+	SubString(Sub, S, 1, pos - 1);
+	Sub.length = pos - 1;
+	SubString(T, S, pos + len , StrLength(S) - len - pos +1);
+	T.length = StrLength(S) - len - pos + 1;
+	Concat(S, Sub, T);
+	return OK;
+}// StrDelete
+
+Status Destroy(HString &S){
+	// 销毁S
+	if (!S.ch) return ERROR;
+	free(S.ch);
+	return OK;
+}// Destroy
