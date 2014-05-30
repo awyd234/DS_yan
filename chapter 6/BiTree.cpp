@@ -33,6 +33,28 @@ Status PreOrderTraverse_Recur(BiTree T, Status(*Visit)(TElemType e)){
 	}else return OK;
 }// PreOrderTraverse_Recur
 
+Status PreOrderTraverse(BiTree T, Status(*Visit)(TElemType e)){
+	// 采用二叉树链表存储结构，Visit是对数据元素操作的应用函数
+	// 先序遍历二叉树T的非递归算法，对每个数据元素调用函数Visit
+	SqStack S;
+	BiTree p;
+	InitStack(S);
+	p = T;
+	while (p || !StackEmpty(S)){
+		if (p){
+			Push(S, p);
+			if (!Visit(p->data)) return ERROR;
+			p = p->lchild;
+		}
+		else{
+			Pop(S, p);
+			p = p->rchild;
+		}// else
+	}// while
+	return OK;
+}// PreOrderTraverse
+
+
 Status InOrderTraverse_Recur(BiTree T, Status(*Visit)(TElemType e)){
 	// 采用二叉树链表存储结构，Visit是对数据元素操作的应用函数
 	// 中序遍历二叉树T的递归算法，对每个数据元素调用函数Visit
@@ -98,7 +120,54 @@ Status PostOrderTraverse_Recur(BiTree T, Status(*Visit)(TElemType e)){
 	else return OK;
 }// PostOrderTraverse_Recur
 
-Status LevelOrderTraverse(BiTree T, Status(*Visit)(TElemType e));
+Status PostOrderTraverse(BiTree T, Status(*Visit)(TElemType e)){
+	// 采用二叉树链表存储结构，Visit是对数据元素操作的应用函数
+	// 后序遍历二叉树T的非递归算法，对每个数据元素调用函数Visit
+	SqStack S;
+	BiTree p;
+	BiTNode *tmp;
+	InitStack(S);
+	p = T;
+	while (p || !StackEmpty(S)){
+		while (p){
+			p->FirstVisted = TRUE;
+			Push(S, p);
+			p = p->lchild;
+		}
+		if (!StackEmpty(S)){
+			Pop(S, tmp);
+			if (tmp->FirstVisted){
+				tmp->FirstVisted = FALSE;
+				Push(S, tmp);
+				p = tmp->rchild;
+			} else{
+				if (!Visit(tmp->data)) return ERROR;
+				p = NULL;
+			}
+		}
+	}// while
+	return OK;
+}// PostOrderTraverse
+
+Status LevelOrderTraverse(BiTree T, Status(*Visit)(TElemType e)){
+	// 采用二叉树链表存储结构，Visit是对数据元素操作的应用函数
+	// 层序遍历二叉树T，对每个数据元素调用函数Visit 
+	BiTree p = T;
+	LinkQueue Q;
+	InitQueue(Q);
+	while (p || !QueueEmpty(Q)){
+		if (!Visit(p->data)) return ERROR;
+		if (p->lchild)
+			EnQueue(Q, p->lchild);
+		if (p->rchild)
+			EnQueue(Q, p->rchild);
+		if (!QueueEmpty(Q))
+			DeQueue(Q, p);
+		else
+			break;
+	}
+	return OK;
+}// LevelOrderTraverse
 
 Status PrintElement(TElemType e){
 	// 输出元素e的值
