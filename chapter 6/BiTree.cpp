@@ -136,11 +136,11 @@ Status PostOrderTraverse(BiTree T, Status(*Visit)(TElemType e)){
 		}
 		if (!StackEmpty(S)){
 			Pop(S, tmp);
-			if (tmp->FirstVisted){
+			if (tmp->FirstVisted){				// 第一次出现在栈顶
 				tmp->FirstVisted = FALSE;
 				Push(S, tmp);
 				p = tmp->rchild;
-			} else{
+			} else{								// 第二次出现在栈顶
 				if (!Visit(tmp->data)) return ERROR;
 				p = NULL;
 			}
