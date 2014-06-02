@@ -64,6 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BiThrTree.h" />
     <ClInclude Include="BiTree.h" />
     <ClInclude Include="LinkQueue.h" />
     <ClInclude Include="MyHeader.h" />
@@ -72,6 +73,7 @@
     <ClInclude Include="type_def.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BiThrTree.cpp" />
     <ClCompile Include="BiTree.cpp" />
     <ClCompile Include="LinkQueue.cpp" />
     <ClCompile Include="main.cpp" />

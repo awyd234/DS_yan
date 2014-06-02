@@ -3,6 +3,7 @@
 
 #include "type_def.h"
 #include "BiTree.h"
+#include "BiThrTree.h"
 #include "sq_stack.h"
 #include "SqQueue.h"
 #include "LinkQueue.h"

@@ -4,26 +4,11 @@
 #include "MyHeader.h"
 
 int main(){
-	BiTree T;
-	CreateBiTree(T);
-	printf("PreOrderTraverse_Recur:\n");
-	PreOrderTraverse_Recur(T, PrintElement);
-	printf("\n\n");
-	printf("PreOrderTraverse:\n");
-	PreOrderTraverse(T, PrintElement);
-	printf("\n\n");
-	printf("InOrderTraverse_Recur:\n");
-	InOrderTraverse_Recur(T, PrintElement);
-	printf("\n\n");
-	printf("PostOrderTraverse_Recur:\n");
-	PostOrderTraverse_Recur(T, PrintElement);
-	printf("\n\n");
-	printf("PostOrderTraverse:\n");
-	PostOrderTraverse(T, PrintElement); 
-	printf("\n\n");
-	printf("LevelOrderTraverse:\n");
-	LevelOrderTraverse(T, PrintElement);
-	printf("\n\n");
+	BiThrTree T,Thrt;
+	CreateBiThrTree(T);
+	InOrderThreading(Thrt, T);
+	InOrderTraverse_Thr(T, PrintElement);
+	printf("\n");
 	system("pause");
 	return 0;
 }
