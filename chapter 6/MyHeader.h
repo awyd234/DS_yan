@@ -2,6 +2,7 @@
 #define _MYHEADER_H_
 
 #include "type_def.h"
+#include "HuffmanTree.h"
 #include "BiTree.h"
 #include "BiThrTree.h"
 #include "sq_stack.h"

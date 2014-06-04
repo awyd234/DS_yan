@@ -36,6 +36,9 @@
     <ClInclude Include="BiThrTree.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="HuffmanTree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -54,6 +57,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="BiThrTree.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="HuffermanTree.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
