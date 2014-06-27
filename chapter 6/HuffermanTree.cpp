@@ -77,7 +77,7 @@ void Select(HuffmanTree &HT, int n, int &s1, int &s2){
 }// Select
 
 void GetHuffmanCode(HuffmanTree HT, HuffmanCode &HC, int n){
-	//
+	//ÎŞÕ»·Çµİ¹é±éÀúºÕ·òÂüÊ÷£¬ÇóºÕ·òÂü±àÂë
 	int m, p, cdlen, i;
 	char *cd;
 	HC = (HuffmanCode)malloc((n + 1) * sizeof(char*));
