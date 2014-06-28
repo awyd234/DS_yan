@@ -5,6 +5,7 @@
 #define OK 1
 #define TRUE 1
 #define FALSE 0
+#define OVERFLOW -2
 #define STACK_INIT_SIZE 100   //栈初始化值
 #define STACKINCREMENT 10     //栈容量每次增加的值
 

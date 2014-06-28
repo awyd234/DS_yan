@@ -8,6 +8,8 @@ typedef char VRType;			// 顶点关系类型
 typedef char VertexType;	// 顶点向量
 typedef char InfoType;		// 弧相关信息的指针
 
+typedef VertexType QElemType;
+
 //----- 图的数组（邻接矩阵）存储表示 -----
 typedef struct ArcCell{
 	VRType		adj;	// VRType是顶点关系类型。对无权图，用1或0表示相邻否；
@@ -47,8 +49,8 @@ typedef struct{
 
 int LocateVex(ALGraph G, VertexType v);
 int FirstAdjVex(ALGraph G, int v);
-int NextAdjVex(ALGraph G, int v);
-int GetVex(ALGraph G, int v, int w);
+int NextAdjVex(ALGraph G, int v, int w);
+int GetVex(ALGraph G, int v);
 Status CreateDN(ALGraph &G);
 Status CreateUDG(ALGraph &G);
 Status CreateDG(ALGraph &G);

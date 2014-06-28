@@ -6,6 +6,11 @@
 int main(){
 	ALGraph G;
 	CreateUDG(G);
+	Boolean HaveVisited[MAX_VERTEX_NUM];
+	DFSTraverse(G, HaveVisited, display);
+	printf("\n");
+	BFSTraverse(G, HaveVisited, display);
+	printf("\n");
 	for (int i = 0; i< G.vexnum; i++)
 	{
 		printf("%d->", i);

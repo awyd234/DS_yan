@@ -64,12 +64,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DFS_BFS.h" />
     <ClInclude Include="graph.h" />
+    <ClInclude Include="LinkQueue.h" />
     <ClInclude Include="MyHeader.h" />
     <ClInclude Include="type_def.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DFS_BFS.cpp" />
     <ClCompile Include="graph.cpp" />
+    <ClCompile Include="LinkQueue.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
