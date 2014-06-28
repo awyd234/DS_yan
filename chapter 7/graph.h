@@ -46,6 +46,12 @@ typedef struct{
 }ALGraph;
 
 int LocateVex(ALGraph G, VertexType v);
+int FirstAdjVex(ALGraph G, int v);
+int NextAdjVex(ALGraph G, int v);
+int GetVex(ALGraph G, int v, int w);
+Status CreateDN(ALGraph &G);
+Status CreateUDG(ALGraph &G);
+Status CreateDG(ALGraph &G);
 
 //----- 有向图的十字链表存储表示 -----
 typedef struct ArcBox{

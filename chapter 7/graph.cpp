@@ -1,6 +1,7 @@
 #define  _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "MyHeader.h"
 
@@ -95,6 +96,151 @@ int LocateVex(ALGraph G, VertexType v){
 	}
 	return ERROR;
 }// LocateVex
+
+int FirstAdjVex(ALGraph G, int v){
+	// 图G存在，v是G中某个顶点
+	// 返回v的第一个邻接顶点，若没有则返回“空”
+	if (G.vertices[v].firstarc != NULL)
+		return G.vertices[v].firstarc->adjvex;
+	return -1;
+}// FirstAdjVex
+
+int NextAdjVex(ALGraph G, int v, int w){
+	// G存在，v是G中某顶点，w是v的邻接顶点
+	// 返回v的（相对于w）下一个邻接顶点。若w是v的最后一个邻接顶点，则返回“空”
+	ArcNode *p;
+	p = G.vertices[v].firstarc;
+	while (p){
+		if (p->adjvex == w){
+			p = p->nextarc;
+			if (p != NULL){
+				return p->adjvex;
+			} else{
+				return -1;
+			}
+		} else{
+			p = p->nextarc;
+		}
+	}
+	return -1;
+}// NextAdjVex
+
+int GetVex(ALGraph G, int v){
+	// 图G存在，v为G的某个顶点
+	// 返回v的值
+	return G.vertices[v].data;
+}// GetVex
+
+Status CreateDN(ALGraph &G){
+	// 采用邻接表表示法，构造有向网G
+	int i, j, k;
+	char value[10];
+	ArcNode *p;
+	VertexType v1, v2;
+	G.kind = DN;
+	printf("Please input vexnum arcnum (DN): ");
+	scanf("%d %d", &G.vexnum, &G.arcnum);	
+	getchar();											// 接收最后的换行符
+	printf("Please input %d vertex: ", G.vexnum);
+	for (i = 0; i < G.vexnum; i++){
+		scanf("%c", &G.vertices[i].data);
+		getchar();
+		G.vertices[i].firstarc = NULL;
+	}
+	printf("Please input %d arc (DN): ", G.arcnum);
+	for (k = 0; k < G.arcnum; k++){
+		printf("Please input %d arc and its weight, separated by space：\n", k+1);
+		scanf("%c %c %s", &v1, &v2, value);
+		getchar();
+		i = LocateVex(G, v1);
+		j = LocateVex(G, v2);
+		if (!(p = (ArcNode *)malloc(sizeof(ArcNode))))
+			return ERROR;
+		p->nextarc = G.vertices[i].firstarc;
+		p->adjvex = j;
+		G.vertices[i].firstarc = p;
+		G.vertices[i].firstarc->info = (char *)malloc(50 * sizeof(char));
+		strcpy(G.vertices[i].firstarc->info, value);
+	}
+	return OK;
+}//  CreateDN
+
+Status CreateUDG(ALGraph &G){
+	// 采用邻接表表示法，构造无向图G
+	int i, j, k;
+	int IncInfo;
+	ArcNode *p;
+	VertexType v1, v2;
+	G.kind = UDG;
+	printf("Please input vexnum arcnum IncInfo(0/1) (UDG): ");
+	scanf("%d %d %d", &G.vexnum, &G.arcnum, &IncInfo);
+	getchar();											// 接收最后的换行符
+	printf("Please input %d vertex: ", G.vexnum);
+	for (i = 0; i < G.vexnum; i++){
+		scanf("%c", &G.vertices[i].data);
+		getchar();
+		G.vertices[i].firstarc = NULL;
+	}
+	printf("Please input %d arc (UDG): ", G.arcnum);
+	for (k = 0; k < G.arcnum; k++){
+		printf("Please input %d arc, separated by space：\n", k + 1);
+		scanf("%c %c", &v1, &v2);
+		getchar();
+		i = LocateVex(G, v1);
+		j = LocateVex(G, v2);
+		if (!(p = (ArcNode *)malloc(sizeof(ArcNode))))
+			return ERROR;
+		p->nextarc = G.vertices[i].firstarc;
+		p->adjvex = j;
+		G.vertices[i].firstarc = p;
+		if (!(p = (ArcNode *)malloc(sizeof(ArcNode))))
+			return ERROR;
+		p->nextarc = G.vertices[j].firstarc;
+		p->adjvex = i;
+		G.vertices[j].firstarc = p;
+		if (IncInfo){
+			Input(p->info);
+			G.vertices[i].firstarc->info = p->info;
+		}
+	}
+	return OK;
+}// CreateUDG
+
+Status CreateDG(ALGraph &G){
+	// 采用邻接表表示法，构造有向图G
+	int i, j, k;
+	int IncInfo;
+	ArcNode *p;
+	VertexType v1, v2;
+	G.kind = DG;
+	printf("Please input vexnum arcnum IncInfo(0/1) (DG): ");
+	scanf("%d %d %d", &G.vexnum, &G.arcnum, &IncInfo);
+	getchar();											// 接收最后的换行符
+	printf("Please input %d vertex: ", G.vexnum);
+	for (i = 0; i < G.vexnum; i++){
+		scanf("%c", &G.vertices[i].data);
+		getchar();
+		G.vertices[i].firstarc = NULL;
+	}
+	printf("Please input %d arc (DG): ", G.arcnum);
+	for (k = 0; k < G.arcnum; k++){
+		printf("Please input %d arc, separated by space：\n", k + 1);
+		scanf("%c %c", &v1, &v2);
+		getchar();
+		i = LocateVex(G, v1);
+		j = LocateVex(G, v2);
+		if (!(p = (ArcNode *)malloc(sizeof(ArcNode))))
+			return ERROR;
+		p->nextarc = G.vertices[i].firstarc;
+		p->adjvex = j;
+		G.vertices[i].firstarc = p;
+		if (IncInfo){
+			Input(p->info);
+			G.vertices[i].firstarc->info = p->info;
+		}
+	}
+	return OK;
+}// CreateDG
 
 int LocateVex(OLGraph G, VertexType v){
 	// 若顶点v在图G中存在，返回其位置，否则返回ERROR
