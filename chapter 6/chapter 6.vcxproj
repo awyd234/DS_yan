@@ -66,6 +66,7 @@
   <ItemGroup>
     <ClInclude Include="BiThrTree.h" />
     <ClInclude Include="BiTree.h" />
+    <ClInclude Include="CSTree.h" />
     <ClInclude Include="HuffmanTree.h" />
     <ClInclude Include="LinkQueue.h" />
     <ClInclude Include="MyHeader.h" />

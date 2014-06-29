@@ -8,5 +8,6 @@
 #include "sq_stack.h"
 #include "SqQueue.h"
 #include "LinkQueue.h"
+#include "CSTree.h"
 
 #endif
