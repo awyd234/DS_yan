@@ -9,6 +9,7 @@ typedef char VertexType;	// 顶点向量
 typedef char InfoType;		// 弧相关信息的指针
 
 typedef VertexType QElemType;
+typedef VertexType TElemType;
 
 //----- 图的数组（邻接矩阵）存储表示 -----
 typedef struct ArcCell{

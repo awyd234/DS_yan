@@ -64,6 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CSTree.h" />
     <ClInclude Include="DFS_BFS.h" />
     <ClInclude Include="graph.h" />
     <ClInclude Include="LinkQueue.h" />
