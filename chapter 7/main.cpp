@@ -1,10 +1,11 @@
+#define  _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
 
 #include "MyHeader.h"
 
 int main(){
-	ALGraph G;
+	/*ALGraph G;
 	CreateUDG(G);
 	Boolean HaveVisited[MAX_VERTEX_NUM];
 	DFSTraverse(G, HaveVisited, display);
@@ -21,7 +22,13 @@ int main(){
 
 		}
 		printf("\n");
-	}
+	}*/
+	MGraph G;
+	char u;
+	CreateUDN(G);
+	printf("Please input the first vertex u: ");
+	scanf("%c", &u);
+	MiniSpanTree_PRIM(G, u);
 	system("pause");
 	return 0;
 }

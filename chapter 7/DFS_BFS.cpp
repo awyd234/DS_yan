@@ -7,6 +7,7 @@
 Boolean HaveVisited[MAX_VERTEX_NUM];
 Status(*VisitFunc)(int v);
 
+
 void DFSTraverse(ALGraph G, Boolean visited[], Status(*Visit)(ALGraph G, int v)){
 	// 对图G作深度优先遍历
 	int v;
@@ -101,6 +102,49 @@ void DFSTree(ALGraph G, int v, CSTree &T, Boolean visited[]){
 		} // if
 	} // for
 }// DFSTree
+
+void MiniSpanTree_PRIM(MGraph G, VertexType u){
+	// 用普里姆算法从第u个顶点出发构造网G的最小生成树T，输出T的各条边
+	// 记录从顶点集 U 到 V-U 的代价最小的边的辅助数组定义
+	int i, j, k;
+	lowedge closedge;
+	k = LocateVex(G, u);
+	for (j = 0; j < G.vexnum; ++j){
+		if (j != k){						// 辅助数组初始化
+			closedge[j].adjvex = u;
+			closedge[j].lowcost = G.arcs[k][j].adj;
+		}
+	}
+	closedge[k].lowcost = 0;				// 初始，U = {u}
+	for (i = 1; i < G.vexnum; ++i){			// 选择其余G.vexnum - 1 个顶点
+		k = minimum(closedge, G.vexnum);	// 求出T的下一个结点：第k顶点
+		printf("%c %c\n", closedge[k].adjvex, G.vexs[k]);		// 生成树的两边
+		closedge[k].lowcost = 0;			// 第k顶点并入U集
+		for (j = 0; j < G.vexnum; ++j){
+			if (G.arcs[k][j].adj < closedge[j].lowcost){	// 新顶点并入U后重新选择最小边
+				closedge[j].adjvex = G.vexs[k];
+				closedge[j].lowcost = G.arcs[k][j].adj;
+			}
+		}
+	}
+}// MiniSpanTree_PRIM
+
+int minimum(lowedge closedge, int len){
+	int i, min;
+	min = -1;
+	for (i = 0; i < len; i++){
+		if (closedge[i].lowcost){
+			min = i;
+			break;
+		}
+	}
+	for (; i < len; i++){
+		if (closedge[i].lowcost && closedge[i].lowcost < closedge[min].lowcost){
+			min = i;
+		}
+	}
+	return min;
+}// minimum
 
 Status display(ALGraph G, int v){
 	// 打印图G的第v个顶点

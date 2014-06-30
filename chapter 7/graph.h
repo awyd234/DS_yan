@@ -4,7 +4,7 @@
 #define INIFINITY INT_MAX		// 最大值
 #define MAX_VERTEX_NUM 20		// 最大顶点个数
 typedef enum { DG, DN, UDG, UDN } GraphKind;		// {有向图，有向网，无向图，无向网}
-typedef char VRType;			// 顶点关系类型
+typedef int VRType;			// 顶点关系类型
 typedef char VertexType;	// 顶点向量
 typedef char InfoType;		// 弧相关信息的指针
 
