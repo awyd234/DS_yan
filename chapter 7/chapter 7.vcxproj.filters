@@ -33,6 +33,9 @@
     <ClInclude Include="CSTree.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="sq_stack.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -45,6 +48,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="LinkQueue.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="sq_stack.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

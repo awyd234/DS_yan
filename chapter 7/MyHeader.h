@@ -5,6 +5,7 @@
 #include "graph.h"
 #include "CSTree.h"
 #include "LinkQueue.h"
+#include "sq_stack.h"
 #include "DFS_BFS.h"
 
 #endif

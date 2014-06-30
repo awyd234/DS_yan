@@ -69,6 +69,7 @@
     <ClInclude Include="graph.h" />
     <ClInclude Include="LinkQueue.h" />
     <ClInclude Include="MyHeader.h" />
+    <ClInclude Include="sq_stack.h" />
     <ClInclude Include="type_def.h" />
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +77,7 @@
     <ClCompile Include="graph.cpp" />
     <ClCompile Include="LinkQueue.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="sq_stack.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -146,6 +146,51 @@ int minimum(lowedge closedge, int len){
 	return min;
 }// minimum
 
+Status TopologicalSort(ALGraph G){
+	// 有向图G采用邻接表存储结构
+	// 若G无回路，则输出G的顶点的一个拓扑序列并返回OK，否则ERROR
+	int i, count, k;
+	int indegree[MAX_VERTEX_NUM];
+	ArcNode *p;
+	SqStack S;
+	FindInDregree(G, indegree);			// 对各顶点求入度
+	InitStack(S);
+	for (i = 0; i < G.vexnum; i++){		// 建零入度顶点湛S
+		if (!indegree[i])
+			Push(S, i);					// 入度为0者进栈
+	}
+	count = 0;							// 对输出顶点计数
+	while (!StackEmpty(S)){
+		Pop(S, i);						// 输出i号顶点并计数
+		printf("%d %c\n", i, G.vertices[i].data);
+		++count;
+		for (p = G.vertices[i].firstarc; p; p = p->nextarc){
+			k = p->adjvex;				// 对i号顶点的每个邻接点的入度减1
+			if (!(--indegree[k]))
+				Push(S, k);				// 若入度减为0则入栈
+		}// for
+	}// while
+	if (count < G.vexnum){				// 该有向图有回路
+		return ERROR;
+	} else{
+		return OK;
+	}
+}// TopologicalSort
+
+void FindInDregree(ALGraph G, int indegree[]){
+	// 对各顶点求入度
+	int i;
+	ArcNode *p;
+	for (i = 0; i < G.vexnum; i++){
+		indegree[i] = 0;
+	}
+	for (i = 0; i < G.vexnum; i++){
+		for (p = G.vertices[i].firstarc; p; p = p->nextarc){
+			indegree[p->adjvex]++;
+		}
+	}
+}//  FindInDregree
+
 Status display(ALGraph G, int v){
 	// 打印图G的第v个顶点
 	if (v >= G.vexnum)

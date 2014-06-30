@@ -23,12 +23,16 @@ int main(){
 		}
 		printf("\n");
 	}*/
-	MGraph G;
+	/*MGraph G;
 	char u;
 	CreateUDN(G);
 	printf("Please input the first vertex u: ");
 	scanf("%c", &u);
-	MiniSpanTree_PRIM(G, u);
+	MiniSpanTree_PRIM(G, u);*/
+	ALGraph G;
+	CreateDG(G);
+	printf("The TopologicalSort for G:\n");
+	TopologicalSort(G);
 	system("pause");
 	return 0;
 }

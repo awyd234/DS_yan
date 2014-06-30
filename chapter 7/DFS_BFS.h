@@ -13,6 +13,8 @@ void DFSForest(ALGraph G, CSTree &T);
 void DFSTree(ALGraph G, int v, CSTree &T, Boolean visited[]);
 void MiniSpanTree_PRIM(MGraph G, VertexType u);
 int minimum(lowedge closedge, int len);
+Status TopologicalSort(ALGraph G);
+void FindInDregree(ALGraph G, int indegree[]);
 Status display(ALGraph G, int v);
 
 #endif
