@@ -29,10 +29,15 @@ int main(){
 	printf("Please input the first vertex u: ");
 	scanf("%c", &u);
 	MiniSpanTree_PRIM(G, u);*/
-	ALGraph G;
+	/*ALGraph G;
 	CreateDG(G);
 	printf("The TopologicalSort for G:\n");
-	TopologicalSort(G);
+	TopologicalSort(G);*/
+	ALGraph G;
+	CreateDN(G);
+	SqStack T;
+	int ve[MAX_VERTEX_NUM];
+	CriticalPath(G, T, ve); 
 	system("pause");
 	return 0;
 }

@@ -191,6 +191,81 @@ void FindInDregree(ALGraph G, int indegree[]){
 	}
 }//  FindInDregree
 
+Status TopologicalOrder(ALGraph G, SqStack &T, int ve[]){
+	// 有向图G采用邻接表存储结构, 求各顶点事件的最早发生时间ve
+	// T为拓扑序列顶点栈，S为零入度顶点栈
+	// 若G无回路，则用栈T返回G的一个拓扑序列，且函数值为OK，否则ERROR
+	int i, count, k;
+	int arctime;
+	int indegree[MAX_VERTEX_NUM];
+	ArcNode *p;
+	SqStack S;
+	FindInDregree(G, indegree);			// 对各顶点求入度
+	InitStack(S);
+	for (i = 0; i < G.vexnum; i++){		// 建零入度顶点栈S
+		if (!indegree[i])
+			Push(S, i);					// 入度为0者进栈
+		ve[i] = 0;						// 初始化
+	}
+	InitStack(T);
+	count = 0;							// 对输出顶点计数
+	while (!StackEmpty(S)){
+		Pop(S, i);						// i号顶点入T栈并计数
+		Push(T, i);
+		++count;
+		for (p = G.vertices[i].firstarc; p; p = p->nextarc){
+			k = p->adjvex;				// 对i号顶点的每个邻接点的入度减1
+			if (!(--indegree[k]))
+				Push(S, k);				// 若入度减为0则入栈
+			arctime = atoi(p->info);	// 把活动时间由字符转为整数
+			if (ve[i] + arctime > ve[k]){
+				ve[k] = ve[i] + arctime;
+			}
+		}// for   *(p->info) = dut(<j,k>)
+	}// while
+	if (count < G.vexnum){				// 该有向网有回路
+		return ERROR;
+	} else{
+		return OK;
+	}
+}// TopologicalOrder
+
+Status CriticalPath(ALGraph G, SqStack &T, int ve[]){
+	// G为有向网，输出G的各项关键活动
+	int i, j, k, dut, ee, el;
+	char tag;
+	int vl[MAX_VERTEX_NUM];
+	ArcNode *p;
+	if (!TopologicalOrder(G, T, ve)){
+		return ERROR;
+	}
+	for (i = 0; i < G.vexnum; i++){
+		vl[i] = ve[G.vexnum - 1];		// 初始化顶点事件的最迟发生时间
+	}
+	while (!StackEmpty(T)){				// 按拓扑逆序求各定点的vl值
+		for (Pop(T, j), p = G.vertices[j].firstarc; p; p = p->nextarc){
+			k = p->adjvex;
+			dut = atoi(p->info);
+			if (vl[k] - dut < vl[j]){
+				vl[j] = vl[k] - dut;
+			}
+		}// for
+	}// while
+	for (j = 0; j < G.vexnum; j++){		// 求ee,el和关键活动
+		for (p = G.vertices[j].firstarc; p; p = p->nextarc){
+			k = p->adjvex;
+			dut = atoi(p->info);
+			ee = ve[j];
+			el = vl[k] - dut;
+			tag = (ee == el) ? '*' : ' ';
+			if (ee == el)
+				printf("%c->%c ", G.vertices[j].data, G.vertices[k].data);
+			//printf("%d %d %d %d %d%c\n", j, k, dut, ee, el, tag);	// 输出关键活动
+		}
+	}
+	return OK;
+}// CriticalPath
+
 Status display(ALGraph G, int v){
 	// 打印图G的第v个顶点
 	if (v >= G.vexnum)

@@ -147,7 +147,7 @@ Status CreateDN(ALGraph &G){
 		getchar();
 		G.vertices[i].firstarc = NULL;
 	}
-	printf("Please input %d arc (DN): ", G.arcnum);
+	printf("Please input %d arc (DN): \n", G.arcnum);
 	for (k = 0; k < G.arcnum; k++){
 		printf("Please input %d arc and its weight, separated by space£º\n", k+1);
 		scanf("%c %c %s", &v1, &v2, value);

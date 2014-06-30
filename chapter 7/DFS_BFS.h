@@ -15,6 +15,8 @@ void MiniSpanTree_PRIM(MGraph G, VertexType u);
 int minimum(lowedge closedge, int len);
 Status TopologicalSort(ALGraph G);
 void FindInDregree(ALGraph G, int indegree[]);
+Status TopologicalOrder(ALGraph G, SqStack &T, int ve[]);
+Status CriticalPath(ALGraph G, SqStack &T, int ve[]);
 Status display(ALGraph G, int v);
 
 #endif
