@@ -266,6 +266,80 @@ Status CriticalPath(ALGraph G, SqStack &T, int ve[]){
 	return OK;
 }// CriticalPath
 
+void ShortestPath_DIJ(MGraph G, int v0, PathMatrix &P, ShortPathTable &D){
+	// 用dijkstra算法求有向网G的顶点v0到其余顶点v的最短路径P[v]及其带权长度D[v]
+	// 若P[v][w]为TRUE，则w是从v0到v当前求得最短路径上的最短路径
+	// final[v]为TRUE，当且仅当v∈S，即已经求得从v0到v的最短路径
+	int i, v, w, min;
+	bool flag;
+	bool final[MAX_VERTEX_NUM];
+	for (v = 0; v < G.vexnum; v++){
+		final[v] = FALSE;
+		D[v] = G.arcs[v0][v].adj;
+		for (w = 0; w < G.vexnum; w++)			// 设空路径
+			P[v][w] = FALSE;
+		if (D[v] < INIFINITY){
+			P[v][v0] = TRUE;
+			P[v][v] = TRUE;
+		}// if
+	}// for
+	D[v0] = 0;									// 初始化，v0顶点属于S集
+	final[v0] = TRUE;
+	// 开始主循环，每次求得v0到某个v顶点的最短路径，并将v加到S集
+	for (i = 0; i < G.vexnum; i++){				// 其余G.vexnum-1各顶点
+		min = INIFINITY;						// 当前所知离v0最近距离
+		flag = FALSE;
+		for (w = 0; w > G.vexnum; w++){
+			if (!final[w]){						// w顶点在 V - S 中
+				if (D[w] < min){				// w顶点离v0顶点更近
+					flag = TRUE;
+					v = w;
+					min = D[w];
+				}
+			}
+		}
+		if (!flag)
+			break;
+		final[v] = TRUE;						// 离v0顶点最近的v加入S集
+		for (w = 0; w < G.vexnum; w++){			// 更新当前最短路径及距离
+			if (!final[w] && (min + G.arcs[v][w].adj < D[w]) && G.arcs[v][w].adj != INIFINITY){	// 修改D[w]和P[w]，w∈V-S
+				D[w] = min + G.arcs[v][w].adj;
+				CopyPath(P, w, v);				// P[w] = P[v] + P[w]
+				P[w][w] = TRUE;
+			} // if
+		}
+	}// for
+}// ShortestPath_DIJ
+
+void CopyPath(PathMatrix &P, int w, int v){
+	// 复制最短路径顶点v的路径到顶点w
+	int i;
+	for (i = 0; i < MAX_VERTEX_NUM; i++){
+		P[w][i] = P[v][i];
+	}
+}// CopyPath
+
+void DisplayShortestPath_DIJ(MGraph G, int v0, PathMatrix P, ShortPathTable D){
+	// 打印Dijkstra算法求得的v0到其余各顶点的最短路径P及路径长度D
+	int i, j;
+	printf("The following is the shortest path from %c to other vex：\n", G.vexs[v0]);
+	for (i = 0; i < G.vexnum; i++){
+		if (i != v0){
+			if (D[i] == INIFINITY){
+				printf("Vertex %c cannot be reached!", G.vexs[i]);
+			} else{
+				printf("Vertex %c (the distance is %d)：", G.vexs[i], D[i]);
+				for (j = 0; j < G.vexnum; j++){
+					if (P[i][j]){
+						printf("%c ", G.vexs[j]);
+					}
+				}
+			}
+			printf("\n");
+		}
+	}
+}// DisplayShortestPath_DIJ
+
 Status display(ALGraph G, int v){
 	// 打印图G的第v个顶点
 	if (v >= G.vexnum)
