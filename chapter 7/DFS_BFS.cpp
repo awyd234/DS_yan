@@ -289,7 +289,7 @@ void ShortestPath_DIJ(MGraph G, int v0, PathMatrix &P, ShortPathTable &D){
 	for (i = 0; i < G.vexnum; i++){				// 其余G.vexnum-1各顶点
 		min = INIFINITY;						// 当前所知离v0最近距离
 		flag = FALSE;
-		for (w = 0; w > G.vexnum; w++){
+		for (w = 0; w < G.vexnum; w++){
 			if (!final[w]){						// w顶点在 V - S 中
 				if (D[w] < min){				// w顶点离v0顶点更近
 					flag = TRUE;
@@ -302,7 +302,7 @@ void ShortestPath_DIJ(MGraph G, int v0, PathMatrix &P, ShortPathTable &D){
 			break;
 		final[v] = TRUE;						// 离v0顶点最近的v加入S集
 		for (w = 0; w < G.vexnum; w++){			// 更新当前最短路径及距离
-			if (!final[w] && (min + G.arcs[v][w].adj < D[w]) && G.arcs[v][w].adj != INIFINITY){	// 修改D[w]和P[w]，w∈V-S
+			if (!final[w] && (min + G.arcs[v][w].adj) < D[w] && G.arcs[v][w].adj != INIFINITY){	// 修改D[w]和P[w]，w∈V-S
 				D[w] = min + G.arcs[v][w].adj;
 				CopyPath(P, w, v);				// P[w] = P[v] + P[w]
 				P[w][w] = TRUE;
