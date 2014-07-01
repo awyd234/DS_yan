@@ -42,7 +42,7 @@ int main(){
 	int ve[MAX_VERTEX_NUM];
 	CriticalPath(G, T, ve); */
 
-	MGraph G;
+	/*MGraph G;
 	int v0;
 	PathMatrix P;
 	ShortPathTable D;
@@ -50,7 +50,13 @@ int main(){
 	printf("Please input v0£º");
 	scanf("%d", &v0);
 	ShortestPath_DIJ(G, v0, P, D);
-	DisplayShortestPath_DIJ(G, v0, P, D);
+	DisplayShortestPath_DIJ(G, v0, P, D);*/
+	MGraph G;
+	PathMatrix P[MAX_VERTEX_NUM];
+	DistanceMatrix D;
+	CreateDN(G);
+	ShortestPath_FLOYD(G, P, D);
+	DisplayShortestPath_FLOYD(G, P, D);
 	system("pause");
 	return 0;
 }

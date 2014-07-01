@@ -340,6 +340,59 @@ void DisplayShortestPath_DIJ(MGraph G, int v0, PathMatrix P, ShortPathTable D){
 	}
 }// DisplayShortestPath_DIJ
 
+void ShortestPath_FLOYD(MGraph G, PathMatrix P[], DistanceMatrix D){
+	// 用Floyd算法求有向网G中各对顶点v和w之间的最短路径P[v][w]及其带权长度D[v][w]
+	// 若P[v][w][u]为TRUE，则u是从v到w当前求得最短路径上的顶点
+	int i, v, w, u;
+	for (v = 0; v < G.vexnum; v++){				// 各对结点之间初始已知路径及距离
+		for (w = 0; w < G.vexnum; w++){
+			D[v][w] = G.arcs[v][w].adj;
+			for (u = 0; u < G.vexnum; u++){
+				P[v][w][u]=FALSE;
+			}
+			if (D[v][w] < INIFINITY){		// 从v到w有直接路径
+				P[v][w][v] = TRUE;
+				P[v][w][w] = TRUE;
+			}// if
+		}
+	}// for
+	for (u = 0; u < G.vexnum; u++){
+		for (v = 0; v < G.vexnum; v++){
+			for (w = 0; w < G.vexnum; w++){
+				if (D[v][u] != INIFINITY && D[u][w] != INIFINITY
+					&& D[v][u] + D[u][w] < D[v][w]){	// 从v经u到w的一条路径更短
+					D[v][w] = D[v][u] + D[u][w];
+					for (i = 0; i < G.vexnum; i++){
+						P[v][w][i] = P[v][u][i] || P[u][w][i];
+					}
+				}// if
+			}
+		}
+	}// for
+}// ShortestPath_FLOYD
+
+void DisplayShortestPath_FLOYD(MGraph G, PathMatrix P[], DistanceMatrix D){
+	// 打印FLOYD求得的有向图G中各对顶点之间的最短路径及带权长度
+	int i, j, k;
+	for (i = 0; i < G.vexnum; i++){
+		for (j = 0; j < G.vexnum; j++){
+			if (i != j){
+				if (D[i][j] == INIFINITY){
+					printf("From vertex %c to vertex %c cannot be reached!", G.vexs[i], G.vexs[j]);
+				} else{
+					printf("From vertex %c to vertex %c (the distance is %d)：", G.vexs[i], G.vexs[j], D[i][j]);
+					for (k = 0; k < G.vexnum; k++){
+						if (P[i][j][k]){
+							printf("%c ", G.vexs[k]);
+						}
+					}
+				}
+				printf("\n");
+			}
+		}
+	}
+}// DisplayShortestPath_FLOYD
+
 Status display(ALGraph G, int v){
 	// 打印图G的第v个顶点
 	if (v >= G.vexnum)
