@@ -114,4 +114,4 @@ Status CreateSOSTree(SOSTree &T, SSTable ST){
 		SecondOptimal(T, ST.elem, sw, 1, ST.length);
 	}
 	return OK;
-}// CreateSOSTree
+}// CreateSOSTree 
