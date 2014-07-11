@@ -23,8 +23,9 @@ typedef struct{
 	int weight;				// 权值
 }ElemType;
 
+//----- 对数字型关键字定义 -----
 #define EQ(a,b)	((a)==(b))
 #define LT(a,b)	((a)<(b))
-#define LQ(a,b) ((a)>(b))
+#define LQ(a,b) ((a)<=(b))
 
 #endif

@@ -6,5 +6,6 @@
 #include "sq_stack.h"
 #include "LinkQueue.h"
 #include "static_search.h"
+#include "dynamic_search.h"
 
 #endif

@@ -121,7 +121,7 @@ Status PostOrderTraverse_Recur(BiTree T, Status(*Visit)(TElemType e)){
 	else return OK;
 }// PostOrderTraverse_Recur
 
-Status PostOrderTraverse(BiTree T, Status(*Visit)(TElemType e)){
+/*Status PostOrderTraverse(BiTree T, Status(*Visit)(TElemType e)){
 	// 采用二叉树链表存储结构，Visit是对数据元素操作的应用函数
 	// 后序遍历二叉树T的非递归算法，对每个数据元素调用函数Visit
 	SqStack S;
@@ -175,3 +175,4 @@ Status PrintElement(TElemType e){
 	printf("%c" , e);
 	return OK;
 }// PrintElement
+*/

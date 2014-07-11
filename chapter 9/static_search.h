@@ -1,8 +1,6 @@
 #ifndef _STATIC_SEARCH_H_
 #define _STATIC_SEARCH_H_
 
-#include "MyHeader.h"
-
 typedef BiTree SOSTree;		// 次优查找树采用二叉链表的存储结构
 
 //----- 静态查找表的顺序存储结构 -----

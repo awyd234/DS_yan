@@ -9,8 +9,8 @@ typedef ElemType TElemType;
 
 typedef struct BiTNode{
 	TElemType		data;
+	int bf;								// 结点的平衡因子
 	struct BiTNode	*lchild, *rchild;	// 左右孩子指针
-	Status			FirstVisted;
 }BiTNode, *BiTree;
 
 typedef BiTree QElemType;
