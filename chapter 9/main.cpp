@@ -4,10 +4,9 @@
 #include "MyHeader.h"
 
 int main(){
-	BTree T;
-	T = NULL;
-	CreateBTree(T, "BTree_Data.txt");
-	DisplayBTree(T);
+	HashTable H;
+	CreateHashTable(H, "HASH_TABLE.txt");
+	DisplayHashTable(H);
 	printf("\n");
 	system("pause");
 	return 0;
