@@ -66,12 +66,14 @@
   <ItemGroup>
     <ClInclude Include="insert_sort.h" />
     <ClInclude Include="MyHeader.h" />
+    <ClInclude Include="quick_sort.h" />
     <ClInclude Include="sqlist.h" />
     <ClInclude Include="type_def.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="insert_sort.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="quick_sort.cpp" />
     <ClCompile Include="sqlist.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

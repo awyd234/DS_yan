@@ -9,8 +9,9 @@ int main() {
 	//InsertSort(L);
 	//BInsertSort(L);
 	//TwoInsertSort(L);
-	int dlta[30] = { 2, 1 };
-	ShellSort(L, dlta, 2);
+	//int dlta[30] = { 2, 1 };
+	//ShellSort(L, dlta, 2);
+	QuickSort(L);
 	ListTraverse_Sq(L, display_Sq);
 	//DestroyList_Sq(L);
 	/*SLinkListType SL;
