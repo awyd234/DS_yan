@@ -66,6 +66,7 @@
   <ItemGroup>
     <ClInclude Include="BiTree.h" />
     <ClInclude Include="dynamic_search.h" />
+    <ClInclude Include="hash_table.h" />
     <ClInclude Include="LinkQueue.h" />
     <ClInclude Include="MyHeader.h" />
     <ClInclude Include="sq_stack.h" />
@@ -75,6 +76,7 @@
   <ItemGroup>
     <ClCompile Include="BiTree.cpp" />
     <ClCompile Include="dynamic_search.cpp" />
+    <ClCompile Include="hash_table.cpp" />
     <ClCompile Include="LinkQueue.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="sq_stack.cpp" />

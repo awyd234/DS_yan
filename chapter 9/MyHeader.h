@@ -7,5 +7,6 @@
 #include "LinkQueue.h"
 #include "static_search.h"
 #include "dynamic_search.h"
+#include "hash_table.h"
 
 #endif
