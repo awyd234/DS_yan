@@ -141,3 +141,30 @@ Status CreateLinkList(SLinkListType &SL, char *filename) {
 	fclose(fp);
 	return OK;
 }// CreateLinkList
+
+void Arrange(SLinkListType &SL) {
+	// 根据静态链表SL中各结点的指针值调整记录位置，使得SL中记录按关键字
+	// 非递减有序顺序排列
+	int i, p, q;
+	p = SL.r[0].next;			// p指示第一个记录的当前位置
+	for (i = 1; i <= SL.length; i++) {	// SL.r[1..i-1]中记录已按关键字有序排列
+		if (p != i) {
+			Swap(SL.r[p].key, SL.r[i].key);
+			q = SL.r[p].next;
+			SL.r[p].next = SL.r[i].next;
+			SL.r[i].next = p;
+			p = q;
+		}
+		while (p <= i&&p) {
+			p = SL.r[p].next;
+		}
+	}
+}// Arrange
+
+void Swap(int &i, int &j) {
+	// 交换i和j
+	int temp;
+	temp = i;
+	i = j;
+	j = temp;
+}// Swap

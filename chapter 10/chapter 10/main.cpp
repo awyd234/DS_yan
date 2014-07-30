@@ -14,7 +14,8 @@ int main() {
 	SLinkListType SL;
 	CreateLinkList(SL, "SqList_Data.txt");
 	TableInsertSort(SL);
-	for (int i = SL.r[0].next, j = 1; j<=SL.length ; i = SL.r[i].next, j++) {
+	Arrange(SL);
+	for (int i = 1; i <= SL.length; i++) {
 		printf("%d ", SL.r[i].key);
 	}
 	printf("\n");

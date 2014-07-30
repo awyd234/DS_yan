@@ -22,5 +22,7 @@ void BInsertSort(SqList &L);
 void TwoInsertSort(SqList &L);
 void TableInsertSort(SLinkListType &S);
 Status CreateLinkList(SLinkListType &SL, char *filename);
+void Arrange(SLinkListType &SL);
+void Swap(int &i, int &j);
 
 #endif
