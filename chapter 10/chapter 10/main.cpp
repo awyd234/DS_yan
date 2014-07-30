@@ -14,7 +14,8 @@ int main() {
 	//QuickSort(L);
 	//SelectSort(L);
 	InverseSq(L);
-	HeapSort(L);
+	//HeapSort(L);
+	MergeSort(L);
 	ListTraverse_Sq(L, display_Sq);
 	//DestroyList_Sq(L);
 	/*SLinkListType SL;

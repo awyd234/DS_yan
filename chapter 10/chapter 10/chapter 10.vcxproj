@@ -65,6 +65,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="insert_sort.h" />
+    <ClInclude Include="merge_sort.h" />
     <ClInclude Include="MyHeader.h" />
     <ClInclude Include="quick_sort.h" />
     <ClInclude Include="select_sort.h" />
@@ -74,6 +75,7 @@
   <ItemGroup>
     <ClCompile Include="insert_sort.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="merge_sort.cpp" />
     <ClCompile Include="quick_sort.cpp" />
     <ClCompile Include="select_sort.cpp" />
     <ClCompile Include="sqlist.cpp" />
