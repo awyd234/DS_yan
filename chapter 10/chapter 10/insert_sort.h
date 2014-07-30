@@ -24,5 +24,7 @@ void TableInsertSort(SLinkListType &S);
 Status CreateLinkList(SLinkListType &SL, char *filename);
 void Arrange(SLinkListType &SL);
 void Swap(int &i, int &j);
+void ShellInsert(SqList &L, int dk);
+void ShellSort(SqList &L, int dlta[], int t);
 
 #endif
