@@ -404,6 +404,6 @@ void DisplayBTree(BTree T) {
 			} else {
 				DisplayBTree(T->ptr[i]);
 			}
-		}
+		}// for
 	}
 }// DisplayBTree
