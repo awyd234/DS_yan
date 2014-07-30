@@ -29,5 +29,6 @@ Status display_Sq(ElemType e);
 
 void UnionList_Sq(SqList &La, SqList &Lb);
 void Merge_Sq(SqList La,SqList Lb, SqList &Lc);
+void InverseSq(SqList &L);
 
 #endif

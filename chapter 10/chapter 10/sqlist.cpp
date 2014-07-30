@@ -171,3 +171,11 @@ void Merge_Sq(SqList La,SqList Lb, SqList &Lc)
     while(pa <= pa_last) *pc++=*pa++;
     while(pb <= pb_last) *pc++=*pb++;
 }// Merge_Sq
+
+void InverseSq(SqList &L) {
+	// ÄæÏò±ä»»L
+	int i;
+	for (i = 1; i <= (1 + L.length) / 2; i++) {
+		Swap(L.elem[i], L.elem[L.length - i + 1]);
+	}
+}// InverseSq

@@ -30,6 +30,9 @@
     <ClInclude Include="quick_sort.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="select_sort.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sqlist.cpp">
@@ -42,6 +45,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="quick_sort.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="select_sort.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

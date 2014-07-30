@@ -5,5 +5,6 @@
 #include "sqlist.h"
 #include "insert_sort.h"
 #include "quick_sort.h"
+#include "select_sort.h"
 
 #endif
