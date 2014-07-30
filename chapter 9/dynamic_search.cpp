@@ -239,3 +239,171 @@ void RightBalance(BSTree &T){
 		L_Rotate(T);			// 对*T作左旋平衡处理
 	}// switch(rc->bf)
 }// RightBalance
+
+Result SearchBTree(BTree T, KeyType K){
+	// 在m阶B-树T上查找关键字K，返回结果（pt,i,tag）。若查找成功，则特征值tag=1，指针
+	// pt所指结点中第i个关键字等于K；否则特征值tag=0，等于K的关键字应插入在指针pt所指
+	// 结点中第i和第i+1个关键字之间
+	int i;
+	BTree p, q;
+	bool found;
+	p = T;						// 初始化，p指向待查结点，q指向p的双亲
+	q = NULL;
+	found = FALSE;
+	i = 0;
+	while (p&&!found){
+		i = Search(p, K);		// 在p->key[1..keynum]中查找
+								// i使得：p->key[i] <= K < p->key[i+1]
+		if (i > 0 && p->key[i] == K){
+			found = TRUE;		// 找到待查关键字
+		} else{
+			q = p;
+			p = p->ptr[i];
+		}
+	}// while
+	if (found){					//查找成功
+		return{ p, i, 1 };
+	} else{						//查找不成功，返回K的插入位置信息 
+		return{ q, i, 0 };
+	}
+}// SearchBTree
+
+int Search(BTree T, KeyType K){
+	// 在p->key[1..keynum]中查找i使得：T->key[i] <= K < T->key[i+1]
+	int i;
+	if (K < T->key[1]){
+		return 0;
+	} else if (K >= T->key[T->keynum]){
+		return T->keynum;
+	}
+	for (i = 2; i <= T->keynum; i++){
+		if (K < T->key[i])
+			break;
+	}
+	return i - 1;
+}// Search
+
+Status InsertBTree(BTree &T, KeyType K){
+	// 在m阶B-树T上插入关键字K
+	// 若引起结点过大，则沿双亲链进行必要的结点分裂调整，使T仍为m阶B-树
+	int s;
+	KeyType x;
+	Result res;
+	BTree ap;						// 分裂出的结点
+	BTree q;
+	int i;
+	bool finished;
+	x = K;
+	res = SearchBTree(T, K);		// 需要插入的位置
+	q = res.p;
+	i = res.i;
+	ap = NULL;
+	finished = FALSE;
+	if (res.tag) {					// 已经存在，无需插入
+		return 0;
+	}
+	while (q&&!finished){
+		Insert(q, i, x, ap);		// 将x和ap分别插入到q->key[i+1]和q->ptr[i+1]
+		if (q->keynum < m) {
+			finished = TRUE;		// 插入完成
+		} else {					// 分裂结点*q
+			s = (m % 2 == 0) ? m / 2 : (m / 2 + 1);
+			split(q, s, ap);		// 将q->key[s+1..m],q->ptr[s..m],和q->recptr[s+1..m]移入新结点ap
+			x = q->key[s];			
+			q = q->parent;
+			if (q) {
+				i = Search(q, x);	// 在双亲结点*q中查找x的插入位置
+			}
+		}// else
+	}// while
+	if (!finished) {			// T是空树（参数q初值为NULL）或者根结点已分裂为结点*q和*qp
+		NewRoot(T, q, x, ap);		// 生成含信息（T,x,ap）的新的根结点*T，原T和ap为子树指针
+	}
+	return OK;
+}// InsertBTree
+
+Status Insert(BTree q, int i, KeyType x, BTree ap) {
+	// 将x和ap分别插入到q->key[i+1]和q->ptr[i+1]
+	int j;
+	for (j = q->keynum; j >= i + 1; j--) {
+		q->key[j + 1] = q->key[j];
+		q->ptr[j + 1] = q->ptr[j];
+	}
+	q->key[i+1] = x;
+	q->ptr[i+1] = ap;
+	q->keynum++;
+	if (ap) {
+		ap->parent = q;
+	}
+	return OK;
+}// Insert
+
+Status split(BTree q, int s, BTree &ap){
+	// 将q->key[s+1..m],q->ptr[s..m]和q->recptr[s+1..m]移入新结点ap
+	int i;
+	q->keynum = s - 1;
+	ap = (BTree)malloc(sizeof(BTNode));
+	for (i = s + 1; i <= m; i++) {
+		ap->key[i - s] = q->key[i];
+		ap->recptr[i - s] = q->recptr[i];
+	}
+	for (i = s; i <= m; i++) {
+		ap->ptr[i - s] = q->ptr[i];
+		if (ap->ptr[i - s]) {
+			ap->ptr[i - s]->parent = ap;
+		}
+	}
+	ap->keynum = m - s;
+	ap->parent = q->parent;
+	return OK;
+}// split
+
+Status NewRoot(BTree &T, BTree q, KeyType x, BTree ap){
+	// 生成含信息（T,x,ap）的新的根结点*T，原T和ap为子树指针
+	BTree root;
+	root = (BTree)malloc(sizeof(BTNode));
+	root->key[1] = x;
+	root->ptr[0] = T;
+	root->ptr[1] = ap;
+	root->keynum = 1;
+	root->parent = NULL;
+	if (T) {
+		T->parent = root;
+	}
+	if (ap) {
+		ap->parent = root;
+	}
+	T = root;
+	return OK;
+}// NewRoot
+
+Status CreateBTree(BTree &T, char *filename) {
+	// 根据文件filename创建B-树T
+	FILE *fp;
+	KeyType e;
+	fp = fopen(filename, "r");							// 打开文件，只读
+	if (!fp) {
+		printf("Fail to open the file: %s!", filename);
+		return ERROR;
+	}
+	while (fscanf(fp, "%d", &e)!=EOF) {					// 依次读取文件中至e，直至EOF
+		InsertBTree(T, e);								// 将e插入至T中
+	}
+	fclose(fp);
+	return OK;
+}// CreateBTree
+
+void DisplayBTree(BTree T) {
+	// 先序打印T
+	int i;
+	if (T) {
+		for (i = 0; i <= T->keynum; i++) {
+			if (i < T->keynum) {
+				DisplayBTree(T->ptr[i]);
+				printf("%d ", T->key[i + 1]);
+			} else {
+				DisplayBTree(T->ptr[i]);
+			}
+		}
+	}
+}// DisplayBTree

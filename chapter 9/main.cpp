@@ -4,9 +4,11 @@
 #include "MyHeader.h"
 
 int main(){
-	SSTable ST;
-	CreateTable(ST, 11, "test.txt");
-	printf("%d\n", Search_Seq(ST, 65));
+	BTree T;
+	T = NULL;
+	CreateBTree(T, "BTree_Data.txt");
+	DisplayBTree(T);
+	printf("\n");
 	system("pause");
 	return 0;
 }
