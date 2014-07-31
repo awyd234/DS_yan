@@ -68,6 +68,7 @@
     <ClInclude Include="merge_sort.h" />
     <ClInclude Include="MyHeader.h" />
     <ClInclude Include="quick_sort.h" />
+    <ClInclude Include="radix_sort.h" />
     <ClInclude Include="select_sort.h" />
     <ClInclude Include="sqlist.h" />
     <ClInclude Include="type_def.h" />
@@ -77,6 +78,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="merge_sort.cpp" />
     <ClCompile Include="quick_sort.cpp" />
+    <ClCompile Include="radix_sort.cpp" />
     <ClCompile Include="select_sort.cpp" />
     <ClCompile Include="sqlist.cpp" />
   </ItemGroup>

@@ -36,6 +36,9 @@
     <ClInclude Include="merge_sort.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="radix_sort.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sqlist.cpp">
@@ -55,6 +58,9 @@
     </ClCompile>
     <ClCompile Include="merge_sort.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="radix_sort.cpp">
+      <Filter>头文件</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

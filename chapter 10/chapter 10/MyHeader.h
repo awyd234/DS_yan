@@ -7,5 +7,6 @@
 #include "quick_sort.h"
 #include "select_sort.h"
 #include "merge_sort.h"
+#include "radix_sort.h"
 
 #endif
